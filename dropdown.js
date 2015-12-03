@@ -1853,6 +1853,10 @@ $.fn.dropdown = function(parameters) {
                 ? module.get.values()
                 : module.get.text()
             ;
+            value = (typeof value === "string" && settings.ignoresCase)
+              ? value.toLowerCase()
+              : value
+            ;
             shouldSearch = (isMultiple)
               ? (value.length > 0)
               : (value !== undefined && value !== null)
@@ -1869,6 +1873,14 @@ $.fn.dropdown = function(parameters) {
                     $choice       = $(this),
                     optionText    = module.get.choiceText($choice),
                     optionValue   = module.get.choiceValue($choice, optionText)
+                  ;
+                  optionText = (typeof optionText === "string" && settings.ignoresCase)
+                    ? optionText.toLowerCase()
+                    : optionText
+                  ;
+                  optionValue = (typeof optionValue === "string" && settings.ignoresCase)
+                    ? optionValue.toLowerCase()
+                    : optionValue
                   ;
                   // safe early exit
                   if(optionValue === null || optionValue === undefined) {
@@ -3537,6 +3549,8 @@ $.fn.dropdown.settings = {
   duration               : 200,        // duration of transition
 
   glyphWidth             : 1.037,      // widest glyph width in em (W is 1.037 em) used to calculate multiselect input width
+  
+  ignoresCase            : false,      // when determining if an item exists or not ignore case of value and label when comparing
 
   // label settings on multi-select
   label: {
