@@ -759,7 +759,7 @@ module.exports = function(parameters) {
               : module.get.query(),
             results          =  null,
             escapedTerm      = module.escape.regExp(searchTerm),
-            beginsWithRegExp = new RegExp('^' + escapedTerm, 'igm')
+            containsRegExp = new RegExp(escapedTerm, 'igm')
           ;
           // avoid loop if we're matching nothing
           if( module.has.query() ) {
@@ -775,7 +775,7 @@ module.exports = function(parameters) {
                 ;
                 if(settings.match == 'both' || settings.match == 'text') {
                   text = String(module.get.choiceText($choice, false));
-                  if(text.search(beginsWithRegExp) !== -1) {
+                  if(text.search(containsRegExp) !== -1) {
                     results.push(this);
                     return true;
                   }
@@ -791,7 +791,7 @@ module.exports = function(parameters) {
                 if(settings.match == 'both' || settings.match == 'value') {
                   value = String(module.get.choiceValue($choice, text));
 
-                  if(value.search(beginsWithRegExp) !== -1) {
+                  if(value.search(containsRegExp) !== -1) {
                     results.push(this);
                     return true;
                   }
