@@ -790,7 +790,7 @@ module.exports = function(parameters) {
             $selectedItem      = ($currentlySelected.length > 0)
               ? $currentlySelected
               : $activeItem,
-            hasSelected = ($selectedItem.size() > 0)
+            hasSelected = ($selectedItem.length > 0)
           ;
           if( module.has.query() ) {
             if(hasSelected) {
