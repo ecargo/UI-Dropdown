@@ -1151,7 +1151,7 @@ module.exports = function(parameters) {
                   ? $currentlySelected
                   : $activeItem,
                 $visibleItems = ($selectedItem.length > 0)
-                  ? $selectedItem.siblings(':not(.' + className.filtered +')').andSelf()
+                  ? $selectedItem.siblings(':not(.' + className.filtered +')').addBack()
                   : $menu.children(':not(.' + className.filtered +')'),
                 $subMenu             = $selectedItem.children(selector.menu),
                 $parentMenu          = $selectedItem.closest(selector.menu),
